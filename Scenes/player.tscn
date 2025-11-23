@@ -82,7 +82,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idlePlayer",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 0.61,
@@ -117,7 +117,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walkPlayer",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3oh4o"]
@@ -135,9 +135,8 @@ unique_name_in_owner = true
 modulate = Color(0.2, 0.03529412, 0.050980393, 1)
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_07an8")
-animation = &"idlePlayer"
+animation = &"walkPlayer"
 autoplay = "idlePlayer"
-frame_progress = 0.6877653
 
 [node name="Body" type="CollisionShape2D" parent="."]
 visible = false
