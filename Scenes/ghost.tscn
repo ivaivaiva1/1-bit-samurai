@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://dktfykctscno7"]
+
+[ext_resource type="Texture2D" uid="uid://buvaojy7biqdt" path="res://Sprites/Samurai_Spritesheet.png" id="1_6g3fg"]
+[ext_resource type="Script" uid="uid://dk3hdphddoypj" path="res://Scripts/enemyMovement.gd" id="1_sduxd"]
+[ext_resource type="Script" uid="uid://blgdd2ahok0eg" path="res://Scripts/ghost_floating.gd" id="3_5wlhj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_108wt"]
+radius = 5.25
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sduxd"]
+radius = 13.311369
+
+[node name="Ghost" type="CharacterBody2D"]
+position = Vector2(525, 260)
+scale = Vector2(4, 4)
+motion_mode = 1
+script = ExtResource("1_sduxd")
+
+[node name="EnemyPatrol" type="Node2D" parent="."]
+
+[node name="GhostFloating" type="Node2D" parent="." node_paths=PackedStringArray("floatingObject")]
+script = ExtResource("3_5wlhj")
+floatingObject = NodePath("../GhostContainer")
+
+[node name="GhostContainer" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="GhostContainer"]
+unique_name_in_owner = true
+modulate = Color(0.2, 0.03529412, 0.050980393, 1)
+texture_filter = 1
+texture = ExtResource("1_6g3fg")
+hframes = 6
+vframes = 5
+
+[node name="Touch_Area" type="Area2D" parent="GhostContainer" groups=["enemy"]]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GhostContainer/Touch_Area"]
+position = Vector2(1, -0.25)
+shape = SubResource("CapsuleShape2D_108wt")
+
+[node name="VisionArea" type="Area2D" parent="GhostContainer"]
+visible = false
+modulate = Color(0.16078432, 1, 1, 1)
+scale = Vector2(5, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GhostContainer/VisionArea"]
+shape = SubResource("CircleShape2D_sduxd")
+
+[connection signal="area_entered" from="GhostContainer/VisionArea" to="." method="_on_vision_area_area_entered"]

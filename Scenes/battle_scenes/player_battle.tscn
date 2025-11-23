@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgxndeeit3ieg"]
+
+[ext_resource type="Texture2D" uid="uid://buvaojy7biqdt" path="res://Sprites/Samurai_Spritesheet.png" id="1_743eh"]
+
+[node name="Player" type="Sprite2D"]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("1_743eh")
+hframes = 4
+vframes = 4

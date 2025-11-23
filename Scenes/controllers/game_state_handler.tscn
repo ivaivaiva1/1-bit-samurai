@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://yxmj3d58u5xf"]
+
+[ext_resource type="Script" uid="uid://2nrppkghjtio" path="res://Scripts/controllers/game_state_handler.gd" id="1_babo5"]
+
+[node name="game_state_handler" type="Node"]
+process_mode = 3
+script = ExtResource("1_babo5")

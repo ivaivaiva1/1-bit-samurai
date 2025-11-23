@@ -1,0 +1,122 @@
+[gd_scene load_steps=7 format=3 uid="uid://byqt3o8t6ejmd"]
+
+[ext_resource type="Script" uid="uid://bd31kysywbtdy" path="res://Scripts/controllers/game.gd" id="1_i6g32"]
+[ext_resource type="PackedScene" uid="uid://cqvt2jntmv0mp" path="res://Scenes/player.tscn" id="3_3dryh"]
+[ext_resource type="Shader" uid="uid://dnbqg17t5hjkv" path="res://Shaders/blur_shader.gdshader" id="4_3dryh"]
+[ext_resource type="PackedScene" uid="uid://dktfykctscno7" path="res://Scenes/ghost.tscn" id="4_wowpa"]
+[ext_resource type="Texture2D" uid="uid://buvaojy7biqdt" path="res://Sprites/Samurai_Spritesheet.png" id="5_wowpa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wowpa"]
+shader = ExtResource("4_3dryh")
+shader_parameter/strength = 0.0
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_i6g32")
+
+[node name="SamuraiSpritesheet" type="Sprite2D" parent="."]
+modulate = Color(0.2, 0.03529412, 0.050980393, 1)
+position = Vector2(-2078, 574)
+scale = Vector2(4.746774, 4.746774)
+texture = ExtResource("5_wowpa")
+
+[node name="game_container" type="SubViewportContainer" parent="."]
+offset_right = 1280.0
+offset_bottom = 1080.0
+
+[node name="game_window" type="SubViewport" parent="game_container"]
+unique_name_in_owner = true
+handle_input_locally = false
+size = Vector2i(1280, 1080)
+render_target_update_mode = 4
+
+[node name="cream_background" type="ColorRect" parent="game_container/game_window"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -540.0
+offset_right = 640.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.972549, 0.9411765, 1)
+
+[node name="BodyPlayer" parent="game_container/game_window" instance=ExtResource("3_3dryh")]
+position = Vector2(220, 471)
+
+[node name="BodyEnemy" parent="game_container/game_window" instance=ExtResource("4_wowpa")]
+position = Vector2(796, 318)
+
+[node name="BodyEnemy2" parent="game_container/game_window" instance=ExtResource("4_wowpa")]
+position = Vector2(942, 642)
+
+[node name="BodyEnemy3" parent="game_container/game_window" instance=ExtResource("4_wowpa")]
+position = Vector2(513, 728)
+
+[node name="BodyEnemy4" parent="game_container/game_window" instance=ExtResource("4_wowpa")]
+position = Vector2(87, 93)
+
+[node name="BodyEnemy5" parent="game_container/game_window" instance=ExtResource("4_wowpa")]
+position = Vector2(28, 916)
+
+[node name="blur_graphics" type="CanvasLayer" parent="game_container/game_window"]
+
+[node name="shader_rect" type="ColorRect" parent="game_container/game_window/blur_graphics"]
+unique_name_in_owner = true
+process_mode = 3
+material = SubResource("ShaderMaterial_wowpa")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="battle_container" type="SubViewportContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 190.0
+offset_right = 1140.0
+offset_bottom = 890.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="battle_window" type="SubViewport" parent="battle_container"]
+process_mode = 3
+handle_input_locally = false
+size = Vector2i(1000, 700)
+render_target_update_mode = 0
+
+[node name="battle_borders" type="ColorRect" parent="battle_container/battle_window"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -350.0
+offset_right = 500.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0.2, 0.03529412, 0.050980393, 1)
+
+[node name="battle_background" type="ColorRect" parent="battle_container/battle_window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.972549, 0.9411765, 1)
