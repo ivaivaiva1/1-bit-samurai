@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 
-var moveSpeed:float = 200
+var moveSpeed:float = 1000
 @onready var animated_sprite = %Sprite
 var battle_enemy: Enemy
 
@@ -39,6 +39,12 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		battle_enemy = area.get_parent().get_parent()
 		print(battle_enemy)
 		GameManager.game.start_battle()
+		
+	if area.is_in_group("change_room"):
+		print("trocando de sala")
+		var direction: String = area.name
+		GameManager.game.rooms_controller.SpawnRoom(direction)
+		
 
 
 func kill_enemy():

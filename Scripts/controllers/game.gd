@@ -1,7 +1,8 @@
 extends Node2D
 class_name Game
 
-var game_state: String 
+var game_state: String
+var rooms_controller: RoomsController 
 @onready var blur_color_rect: ColorRect = %shader_rect
 @onready var game_window: SubViewport = %game_window
 @onready var battle_window_container: SubViewportContainer = %battle_container
@@ -10,7 +11,6 @@ var game_state: String
 func _init() -> void:
 	GameManager.game = self
 	game_state = GAME_STATE.EXPLORE
-
 
 func start_battle():
 	battle_window_container.visible = true

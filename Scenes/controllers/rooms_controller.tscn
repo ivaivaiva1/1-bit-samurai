@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnpf5fhtkqy11"]
+
+[ext_resource type="Script" uid="uid://ca2kg4owggm0h" path="res://Scenes/controllers/rooms_controller.gd" id="1_ve1c7"]
+[ext_resource type="PackedScene" uid="uid://di76ogxc5fxwn" path="res://Scenes/rooms/room_1.tscn" id="2_eggc8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ve1c7"]
+size = Vector2(47, 1081)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eggc8"]
+size = Vector2(47, 1284.5)
+
+[node name="Rooms_Controller" type="Node2D"]
+script = ExtResource("1_ve1c7")
+initialRoom = ExtResource("2_eggc8")
+
+[node name="left" type="Area2D" parent="." groups=["change_room"]]
+visible = false
+
+[node name="CollisionLeft" type="CollisionShape2D" parent="left"]
+position = Vector2(-39, 531)
+shape = SubResource("RectangleShape2D_ve1c7")
+debug_color = Color(0.82412636, 0.0016583932, 0.9590607, 0.41960785)
+
+[node name="right" type="Area2D" parent="." groups=["change_room"]]
+visible = false
+
+[node name="CollisionRight" type="CollisionShape2D" parent="right"]
+position = Vector2(1319, 531)
+shape = SubResource("RectangleShape2D_ve1c7")
+debug_color = Color(0.82412636, 0.0016583932, 0.9590607, 0.41960785)
+
+[node name="top" type="Area2D" parent="." groups=["change_room"]]
+visible = false
+position = Vector2(1319, 531)
+
+[node name="CollisionTop" type="CollisionShape2D" parent="top"]
+position = Vector2(-683, -450)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_eggc8")
+debug_color = Color(0.82412636, 0.0016583932, 0.9590607, 0.41960785)
+
+[node name="down" type="Area2D" parent="." groups=["change_room"]]
+visible = false
+position = Vector2(1319, 531)
+
+[node name="CollisionDown" type="CollisionShape2D" parent="down"]
+position = Vector2(-683, 598)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_eggc8")
+debug_color = Color(0.82412636, 0.0016583932, 0.9590607, 0.41960785)
+
+[connection signal="area_entered" from="left" to="." method="_on_area_area_entered"]
